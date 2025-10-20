@@ -1,97 +1,231 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Period Tracker App
 
-# Getting Started
+A React Native app for tracking menstrual cycles that works completely offline, storing all data locally on your device. Perfect for women who want to monitor their cycles without needing an internet connection.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## 🚀 Features
 
-## Step 1: Start Metro
+- **100% Offline**: Works without internet connection
+- **Calendar Interface**: Visual calendar showing period days, predictions, and reminders
+- **Smart Predictions**: Automatically calculates next period dates based on your cycle history
+- **Period Modifications**: Adjust period start/end dates if they come early or late
+- **Notifications**: Get reminders 1-2 days before your expected period
+- **Cycle Statistics**: Track average cycle length and period duration
+- **Local Storage**: All data persists using AsyncStorage
+- **Greenish-White Theme**: Calming, nature-inspired color scheme
+- **Android APK**: Build installable APK files
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+## 📱 What This App Does
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+This is a comprehensive period tracking app where you can:
+- **Track Periods**: Mark when your period starts and ends
+- **View Calendar**: See your period days, predicted periods, and reminder days
+- **Modify Dates**: Adjust period dates if they come early or late
+- **Get Notifications**: Receive reminders before your period starts
+- **View Statistics**: See your average cycle length and period duration
+- **Predict Future**: App predicts when your next period will start
+- **All Offline**: No internet required, all data stored locally
 
-```sh
-# Using npm
+## 🛠️ Prerequisites
+
+Before you start, make sure you have:
+
+### Required Software
+- **Node.js (LTS version)** → [Download here](https://nodejs.org)
+- **Java JDK 17 or higher** → [Download here](https://adoptium.net/)
+- **Android Studio** → [Download here](https://developer.android.com/studio)
+
+### Android Studio Setup
+1. Install Android Studio
+2. During installation, make sure to check:
+   - ✅ Android SDK
+   - ✅ Android SDK Platform
+   - ✅ Android Virtual Device
+3. Open Android Studio and install additional SDK components if prompted
+
+### Environment Variables (Windows)
+Add these to your system environment variables:
+```
+ANDROID_HOME = C:\Users\[YourUsername]\AppData\Local\Android\Sdk
+JAVA_HOME = C:\Program Files\Java\jdk-17
+```
+
+Add to PATH:
+```
+%ANDROID_HOME%\platform-tools
+%ANDROID_HOME%\tools
+%JAVA_HOME%\bin
+```
+
+## 🚀 Quick Start
+
+### 1. Install Dependencies
+```bash
+cd TrackerApp
+npm install
+```
+
+### 2. Start Metro Bundler
+```bash
 npm start
-
-# OR using Yarn
-yarn start
 ```
 
-## Step 2: Build and run your app
-
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
-
-```sh
-# Using npm
+### 3. Run on Android Device/Emulator
+```bash
 npm run android
-
-# OR using Yarn
-yarn android
 ```
 
-### iOS
+## 📦 Building APK Files
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+### Debug APK (for testing)
+```bash
+npm run build:android-debug
+```
+APK location: `android/app/build/outputs/apk/debug/app-debug.apk`
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+### Release APK (for distribution)
+```bash
+npm run build:android
+```
+APK location: `android/app/build/outputs/apk/release/app-release.apk`
 
-```sh
-bundle install
+### Clean Build (if you have issues)
+```bash
+npm run clean
+npm run build:android
 ```
 
-Then, and every time you update your native dependencies, run:
+## 📱 Installing the APK
 
-```sh
-bundle exec pod install
+1. Build the release APK using the command above
+2. Copy `app-release.apk` to your Android phone
+3. Enable "Install from unknown sources" in your phone settings
+4. Tap the APK file to install
+5. The app will appear in your app drawer
+
+## 🔧 Development Commands
+
+| Command | Description |
+|---------|-------------|
+| `npm start` | Start Metro bundler |
+| `npm run android` | Run on Android device/emulator |
+| `npm run ios` | Run on iOS simulator (Mac only) |
+| `npm run lint` | Check code for errors |
+| `npm test` | Run tests |
+| `npm run build:android` | Build release APK |
+| `npm run build:android-debug` | Build debug APK |
+| `npm run clean` | Clean build files |
+
+## 📁 Project Structure
+
+```
+TrackerApp/
+├── App.tsx                 # Main app component
+├── package.json           # Dependencies and scripts
+├── tsconfig.json         # TypeScript configuration
+├── android/              # Android-specific files
+│   ├── app/
+│   │   └── build.gradle  # Android build configuration
+│   └── build.gradle      # Root Android build file
+├── ios/                  # iOS-specific files (if needed)
+└── README.md            # This file
 ```
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+## 💾 Data Storage
 
-```sh
-# Using npm
-npm run ios
+The app uses **AsyncStorage** for local data persistence:
+- Period cycles and settings stored as JSON in device storage
+- Survives app restarts and device reboots
+- No internet connection required
+- Data is completely private to your device
+- Automatic cycle length and period duration calculations
 
-# OR using Yarn
-yarn ios
+### Storage Location
+- **Android**: Internal app storage (not accessible to other apps)
+- **iOS**: App sandbox (not accessible to other apps)
+
+## 🔔 Notifications
+
+The app includes local notifications to remind you:
+- **Period Reminders**: Get notified 1-2 days before your expected period
+- **Customizable**: Adjust notification timing in settings
+- **Offline**: Notifications work without internet connection
+- **Privacy**: All notification scheduling is done locally
+
+## 🎨 Customization
+
+### Adding New Features
+1. Edit `App.tsx` to add new functionality
+2. Update the `PeriodCycle` and `CycleSettings` interfaces if needed
+3. Modify the calendar and UI components in the `render` function
+
+### Changing Storage Method
+Replace AsyncStorage with SQLite for more complex data:
+```bash
+npm install expo-sqlite
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+### Styling
+All styles are in the `StyleSheet.create()` section at the bottom of `App.tsx`.
+The app uses a greenish-white color scheme with these main colors:
+- Background: `#f0f8f0` (light greenish-white)
+- Primary: `#4a7c59` (forest green)
+- Secondary: `#2d5a2d` (dark green)
+- Accent: `#6b8e6b` (medium green)
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+## 🐛 Troubleshooting
 
-## Step 3: Modify your app
+### Common Issues
 
-Now that you have successfully run the app, let's make changes!
+**"Metro bundler not found"**
+```bash
+npm install -g @react-native-community/cli
+```
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+**"Android SDK not found"**
+- Make sure Android Studio is installed
+- Check ANDROID_HOME environment variable
+- Run `npx react-native doctor` to diagnose issues
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+**"Build failed"**
+```bash
+cd android
+./gradlew clean
+cd ..
+npm run android
+```
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+**"App crashes on startup"**
+- Check Metro bundler is running (`npm start`)
+- Clear Metro cache: `npx react-native start --reset-cache`
 
-## Congratulations! :tada:
+### Getting Help
+- Check the [React Native documentation](https://reactnative.dev/docs/getting-started)
+- Look at [AsyncStorage docs](https://react-native-async-storage.github.io/async-storage/)
+- Search for React Native issues on Stack Overflow
 
-You've successfully run and modified your React Native App. :partying_face:
+## 🔒 Privacy & Security
 
-### Now what?
+- **No Data Collection**: This app doesn't collect any personal data
+- **Local Storage Only**: All period data stays on your device
+- **No Internet Required**: App works completely offline
+- **No Tracking**: No analytics or user tracking
+- **Complete Privacy**: Your menstrual cycle data never leaves your device
+- **Secure Notifications**: All notifications are scheduled locally
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+## 📄 License
 
-# Troubleshooting
+This project is open source and available under the MIT License.
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+## 🤝 Contributing
 
-# Learn More
+Feel free to:
+- Report bugs
+- Suggest new features
+- Submit pull requests
+- Improve the documentation
 
-To learn more about React Native, take a look at the following resources:
+---
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+**Happy Period Tracking! 🌸📱✨**
+
+Built with React Native, TypeScript, AsyncStorage, and Push Notifications.
