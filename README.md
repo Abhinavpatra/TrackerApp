@@ -2,30 +2,37 @@
 
 A React Native app for tracking menstrual cycles that works completely offline, storing all data locally on your device. Perfect for women who want to monitor their cycles without needing an internet connection.
 
-## 🚀 Features
+## Features
 
 - **100% Offline**: Works without internet connection
-- **Calendar Interface**: Visual calendar showing period days, predictions, and reminders
-- **Smart Predictions**: Automatically calculates next period dates based on your cycle history
+- **Calendar Interface**: Visual calendar showing period days, predictions, and fertility windows
+- **Fertility Tracking**: Track ovulation, fertile windows, and conception likelihood
+- **Smart Predictions**: Automatically calculates next period and ovulation dates based on historical data
+- **Conception Indicators**: Color-coded calendar showing high/medium/low fertility days
 - **Period Modifications**: Adjust period start/end dates if they come early or late
-- **Notifications**: Get reminders 1-2 days before your expected period
-- **Cycle Statistics**: Track average cycle length and period duration
-- **Local Storage**: All data persists using AsyncStorage
+- **Quiet Notifications**: Get silent reminders 1-2 days before your expected period
+- **Cycle Statistics**: Track average cycle length, period duration, and ovulation timing
+- **Customizable Settings**: Adjust cycle length, period duration, and notification preferences
+- **Modular Architecture**: Clean, maintainable codebase with proper separation of concerns
+- **Permanent Storage**: All data persists using AsyncStorage (not cache)
 - **Greenish-White Theme**: Calming, nature-inspired color scheme
 - **Android APK**: Build installable APK files
 
-## 📱 What This App Does
+## What This App Does
 
-This is a comprehensive period tracking app where you can:
+This is a comprehensive fertility and period tracking app where you can:
 - **Track Periods**: Mark when your period starts and ends
-- **View Calendar**: See your period days, predicted periods, and reminder days
+- **Monitor Fertility**: Track ovulation and fertile windows for conception planning
+- **View Calendar**: See period days, ovulation, fertile windows, and conception likelihood
 - **Modify Dates**: Adjust period dates if they come early or late
-- **Get Notifications**: Receive reminders before your period starts
-- **View Statistics**: See your average cycle length and period duration
-- **Predict Future**: App predicts when your next period will start
-- **All Offline**: No internet required, all data stored locally
+- **Get Quiet Notifications**: Receive silent reminders before your period starts
+- **View Statistics**: See your average cycle length, period duration, and ovulation timing
+- **Predict Future**: App predicts when your next period and ovulation will occur
+- **Customize Settings**: Adjust cycle length, period duration, and notification preferences
+- **Conception Planning**: See color-coded fertility indicators (high/medium/low)
+- **All Offline**: No internet required, all data stored permanently on your device
 
-## 🛠️ Prerequisites
+## Prerequisites
 
 Before you start, make sure you have:
 
@@ -56,7 +63,7 @@ Add to PATH:
 %JAVA_HOME%\bin
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Install Dependencies
 ```bash
@@ -74,7 +81,7 @@ npm start
 npm run android
 ```
 
-## 📦 Building APK Files
+## Building APK Files
 
 ### Debug APK (for testing)
 ```bash
@@ -94,7 +101,7 @@ npm run clean
 npm run build:android
 ```
 
-## 📱 Installing the APK
+## Installing the APK
 
 1. Build the release APK using the command above
 2. Copy `app-release.apk` to your Android phone
@@ -115,13 +122,28 @@ npm run build:android
 | `npm run build:android-debug` | Build debug APK |
 | `npm run clean` | Clean build files |
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 TrackerApp/
 ├── App.tsx                 # Main app component
 ├── package.json           # Dependencies and scripts
 ├── tsconfig.json         # TypeScript configuration
+├── src/
+│   ├── components/        # Reusable UI components
+│   │   ├── Calendar.tsx   # Calendar component
+│   │   └── Stats.tsx      # Statistics component
+│   ├── screens/           # Screen components
+│   │   └── Settings.tsx   # Settings screen
+│   ├── services/          # Business logic services
+│   │   ├── StorageService.ts      # Data persistence
+│   │   ├── CycleCalculator.ts     # Cycle calculations
+│   │   └── NotificationService.ts # Push notifications
+│   ├── types/             # TypeScript type definitions
+│   │   └── index.ts       # All type interfaces
+│   ├── constants/         # App constants
+│   │   └── index.ts       # Colors, defaults, etc.
+│   └── utils/             # Utility functions
 ├── android/              # Android-specific files
 │   ├── app/
 │   │   └── build.gradle  # Android build configuration
@@ -130,7 +152,7 @@ TrackerApp/
 └── README.md            # This file
 ```
 
-## 💾 Data Storage
+## Data Storage
 
 The app uses **AsyncStorage** for local data persistence:
 - Period cycles and settings stored as JSON in device storage
@@ -143,7 +165,7 @@ The app uses **AsyncStorage** for local data persistence:
 - **Android**: Internal app storage (not accessible to other apps)
 - **iOS**: App sandbox (not accessible to other apps)
 
-## 🔔 Notifications
+## Notifications
 
 The app includes local notifications to remind you:
 - **Period Reminders**: Get notified 1-2 days before your expected period
@@ -151,7 +173,7 @@ The app includes local notifications to remind you:
 - **Offline**: Notifications work without internet connection
 - **Privacy**: All notification scheduling is done locally
 
-## 🎨 Customization
+## Customization
 
 ### Adding New Features
 1. Edit `App.tsx` to add new functionality
@@ -172,7 +194,7 @@ The app uses a greenish-white color scheme with these main colors:
 - Secondary: `#2d5a2d` (dark green)
 - Accent: `#6b8e6b` (medium green)
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -203,7 +225,7 @@ npm run android
 - Look at [AsyncStorage docs](https://react-native-async-storage.github.io/async-storage/)
 - Search for React Native issues on Stack Overflow
 
-## 🔒 Privacy & Security
+## Privacy & Security
 
 - **No Data Collection**: This app doesn't collect any personal data
 - **Local Storage Only**: All period data stays on your device
@@ -212,11 +234,11 @@ npm run android
 - **Complete Privacy**: Your menstrual cycle data never leaves your device
 - **Secure Notifications**: All notifications are scheduled locally
 
-## 📄 License
+## License
 
 This project is open source and available under the MIT License.
 
-## 🤝 Contributing
+## Contributing
 
 Feel free to:
 - Report bugs
@@ -226,6 +248,6 @@ Feel free to:
 
 ---
 
-**Happy Period Tracking! 🌸📱✨**
+**Happy Period Tracking!**
 
 Built with React Native, TypeScript, AsyncStorage, and Push Notifications.
